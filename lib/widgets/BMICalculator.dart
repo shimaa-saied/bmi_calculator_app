@@ -9,6 +9,7 @@ class BMICalculator extends StatefulWidget {
   int weight = 55;
   int age = 20;
 
+
   @override
   State<BMICalculator> createState() => _BMICalculatorState();
 }
@@ -16,6 +17,7 @@ class BMICalculator extends StatefulWidget {
 class _BMICalculatorState extends State<BMICalculator> {
   bool isMaleSelected = false;
   bool isFemaleSelected = false;
+  String? gender;
 
   double calculateBMI() {
     double heightInMeters = widget.height / 100;
@@ -40,6 +42,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                     setState(() {
                     isMaleSelected = true;
                       isFemaleSelected = false;
+                      gender ='male';
                     });
                   },
                   child: Container(
@@ -66,6 +69,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                     setState(() {
                       isMaleSelected = false;
                       isFemaleSelected = true;
+                      gender ='female';
                     });
                   },
                   child: Container(
@@ -278,6 +282,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                       height: widget.height,
                       weight: widget.weight,
                       age: widget.age,
+                      gender:gender ,
                     ),
                   ),
                 );

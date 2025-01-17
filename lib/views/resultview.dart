@@ -6,12 +6,14 @@ class Resultview extends StatelessWidget {
   final int height;
   final int weight;
   final int age;
+  final String? gender;
 
   const Resultview({super.key,
     required this.bmi,
     required this.height,
     required this.weight,
     required this.age,
+    required this.gender,
   });
 
   String getBMICategory() {
@@ -24,12 +26,16 @@ class Resultview extends StatelessWidget {
     }
   }
   String getBMIDescription() {
-    if (bmi >= 25) {
-      return 'You have a higher than normal body weight. Try to exercise more.';
-    } else if (bmi > 18.5) {
-      return 'You have a normal body weight. Good job!';
+    if (gender=='male') {
+      if (bmi < 18.5) return "You are underweight. Men need to maintain a BMI of 18.5 or higher.";
+      if (bmi < 24.9) return "You have a normal weight. Good job!";
+      if (bmi < 29.9) return "You are overweight. Consider a balanced diet and exercise.";
+      return "You are in the obese category. It's recommended to consult a health professional.";
     } else {
-      return 'You have a lower than normal body weight. You can eat a bit more.';
+      if (bmi < 18.5) return "You are underweight. Women need to maintain a BMI of 18.5 or higher.";
+      if (bmi < 24.9) return "You have a normal weight. Well done!";
+      if (bmi < 29.9) return "You are overweight. Focus on a healthy lifestyle.";
+      return "You are in the obese category. Professional advice is suggested.";
     }
   }
 
@@ -63,6 +69,11 @@ class Resultview extends StatelessWidget {
             ),
             Text(
               'Age: $age years',
+              style: kBodyTextStyle,
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'Gender: $gender',
               style: kBodyTextStyle,
               textAlign: TextAlign.center,
             ),
